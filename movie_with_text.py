@@ -12,7 +12,7 @@ import time
 import cv2
 
 print("[INFO] loading model...")
-#model = MobileNet(weights='imagenet')
+model = MobileNet(weights='imagenet')
 
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
@@ -29,7 +29,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     # and occupied/unoccupied text
     image = frame.array
 
-    
+
 
     # show the frame
     image = cv2.putText(image, 'hello', (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)

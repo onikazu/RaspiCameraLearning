@@ -33,8 +33,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     # and occupied/unoccupied text
     image = frame.array
 
-
-# ここまではいまくいってる
     # machine learning
     # resize to VGG16 size(224, 224)
     img = Image.fromarray(np.uint8(image))
@@ -52,9 +50,10 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     # show the frame
     new_label = label + accu
     image = cv2.putText(image, new_label, (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-    
+
     cv2.imshow("Frame", image)
     key = cv2.waitKey(1) & 0xFF
+    # ピカ処理
     if(result[1]=='notebook'):
             GPIO.setmode(GPIO.BOARD)
             GPIO.setup(PIN,GPIO.OUT)
@@ -64,7 +63,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                 GPIO.output(PIN,False)
                 time.sleep(1.0)
             GPIO.cleanup()
-    print('hello')
     # clear the stream in preparation for the next frame
     rawCapture.truncate(0)
 
